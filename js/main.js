@@ -23,6 +23,8 @@ function saveItemList(e) {
     // itemLists is an array of objects, stringify coverts it to a JSON string
     localStorage.setItem("itemLists", JSON.stringify(itemLists));
   } else {
+    // Get itemLists from Local Storage
+    let itemLists = JSON.parse(localStorage.getItem("itemLists"));
   }
 
   // Prevent form from submitting
