@@ -18,7 +18,8 @@
     <title>Wish List App</title>
   </head>
 
-  <body>
+  <!--Fetch itemLists from local storage onload-->
+  <body onload="fetchItemLists()">
     <!--Restrict everything-->
     <div class="container">
       <div class="header clearfix mt-4">
@@ -49,7 +50,7 @@
         <!--1 col grid-->
         <div class="col-lg-12">
           <!--Wish List stored in Local Storage-->
-          <div id="wishlistResults"></div>
+          <div id="wishListResults"></div>
         </div>
       </div>
 
