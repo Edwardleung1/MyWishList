@@ -31,8 +31,29 @@ function saveItemList(e) {
     localStorage.setItem("itemLists", JSON.stringify(itemLists));
   }
 
+  // Re-fetch itemLists
+  fetchItemLists();
+
   // Prevent form from submitting
   e.preventDefault();
+}
+
+// Delete itemList function by passing url
+function deleteItemList(url) {
+  // Get itemList from local storage and convert it into a JSON
+  let itemLists = JSON.parse(localStorage.getItem("itemLists"));
+  // Loop through itemLists
+  for (let i = 0; i < itemLists.length; i++) {
+    if (itemLists[i].url == url) {
+      // Remove from array
+      itemLists.splice(i, 1);
+    }
+  }
+  // Reset it back to local storage with added new itemList
+  localStorage.setItem("itemLists", JSON.stringify(itemLists));
+
+  // Re-fetch itemLists
+  fetchItemLists();
 }
 
 // Fetch itemLists from local storage
@@ -62,7 +83,7 @@ function fetchItemLists() {
       '">Visit</a> ' +
       " <a onclick=\"deleteItemList('" +
       url +
-      '\')" class="btn btn-danger" target="_blank" href="#">Delete</a> ';
+      '\')" class="btn btn-danger" href="#">Delete</a> ';
     "</h3>" + "</div>";
   }
 }
