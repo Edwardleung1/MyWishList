@@ -53,6 +53,16 @@ function fetchItemLists() {
     let url = itemLists[i].url;
 
     // Build the output by Appending
-    itemListsResults.innerHTML += '<div class="card bg-light text-dark card-body">' + "<h3>" + name + "</h3>" + "</div>";
+    itemListsResults.innerHTML +=
+      '<div class="card bg-light text-dark card-body">' +
+      "<h3>" +
+      name +
+      ' <a class="btn btn-primary" target="_blank" href="' +
+      url +
+      '">Visit</a> ' +
+      " <a onclick=\"deleteItemList('" +
+      url +
+      '\')" class="btn btn-danger" target="_blank" href="#">Delete</a> ';
+    "</h3>" + "</div>";
   }
 }
