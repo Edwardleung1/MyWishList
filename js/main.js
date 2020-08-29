@@ -27,6 +27,8 @@ function saveItemList(e) {
     let itemLists = JSON.parse(localStorage.getItem("itemLists"));
     // Add itemList to array
     itemLists.push(itemList);
+    // Reset it back to local storage
+    localStorage.setItem("itemLists", JSON.stringify(itemLists));
   }
 
   // Prevent form from submitting
