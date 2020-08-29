@@ -27,10 +27,32 @@ function saveItemList(e) {
     let itemLists = JSON.parse(localStorage.getItem("itemLists"));
     // Add itemList to array
     itemLists.push(itemList);
-    // Reset it back to local storage
+    // Reset it back to local storage with added new itemList
     localStorage.setItem("itemLists", JSON.stringify(itemLists));
   }
 
   // Prevent form from submitting
   e.preventDefault();
+}
+
+// Fetch itemLists from local storage
+function fetchItemLists() {
+  // Get itemLists from Local Storage and convert it into a JSON
+  let itemLists = JSON.parse(localStorage.getItem("itemLists"));
+
+  // Output results to UI by grabbing ID
+  let itemListsResults = document.getElementById("wishListResults");
+
+  // Build output from ID spot
+  itemListsResults.innerHTML = "";
+
+  // Loop through itemLists from local storage and output them in a div
+  for (let i = 0; i < itemLists.length; i++) {
+    // Now we have the name and url for each itemList in Local Storage
+    let name = itemLists[i].name;
+    let url = itemLists[i].url;
+
+    // Build the output by Appending
+    itemListsResults.innerHTML += '<div class="card bg-light text-dark card-body">' + "<h3>" + name + "</h3>" + "</div>";
+  }
 }
