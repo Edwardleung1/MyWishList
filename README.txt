@@ -1,0 +1,3 @@
+My Wish List application for storing website urls using nothing but pure JavaScript. I didn't use any library or JS framework, just plain old JavaScript. I used Local Storage to store each item list entered from the form.
+
+It will check if all the input fields in the form is filled in before it is submitted to local storage. Also, updates the UI when the user deletes an item list or opens a new window tab when the user clicks on an url link. 
