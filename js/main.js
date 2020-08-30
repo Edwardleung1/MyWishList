@@ -17,6 +17,14 @@ function saveItemList(e) {
     url: itemUrl,
   };
 
+  // check if URL already exists'
+  for (let i = 0; i < itemList.length; i++) {
+    if (itemList[i].url === itemUrl) {
+      alert("URL site already exists");
+      return false;
+    }
+  }
+
   // Check if local itemList is in storage
   if (localStorage.getItem("itemLists") === null) {
     // Init an array
@@ -86,12 +94,13 @@ function fetchItemLists() {
       "<h3>" +
       name +
       ' <a class="btn btn-primary" target="_blank" href="' +
-      url +
+      addHTTP(url) +
       '">Visit</a> ' +
       " <a onclick=\"deleteItemList('" +
       url +
-      '\')" class="btn btn-danger" href="#">Delete</a> ';
-    "</h3>" + "</div>";
+      '\')" class="btn btn-danger" href="#">Delete</a>' +
+      "</h3>" +
+      "</div>";
   }
 }
 
@@ -116,7 +125,7 @@ function validateForm(itemName, itemUrl) {
   return true;
 }
 
-function addhttp(url) {
+function addHTTP(url) {
   if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
     url = "http://" + url;
   }
