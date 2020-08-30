@@ -7,6 +7,10 @@ function saveItemList(e) {
   const itemName = document.getElementById("itemName").value;
   const itemUrl = document.getElementById("itemUrl").value;
 
+  if (!validateForm(itemName, itemUrl)) {
+    return false;
+  }
+
   // Save as an JS array object to store in local storage
   let itemList = {
     name: itemName,
@@ -30,6 +34,9 @@ function saveItemList(e) {
     // Reset it back to local storage with added new itemList
     localStorage.setItem("itemLists", JSON.stringify(itemLists));
   }
+
+  // Clear form
+  document.getElementById("myForm").reset();
 
   // Re-fetch itemLists
   fetchItemLists();
@@ -86,4 +93,32 @@ function fetchItemLists() {
       '\')" class="btn btn-danger" href="#">Delete</a> ';
     "</h3>" + "</div>";
   }
+}
+
+// Form validation
+function validateForm(itemName, itemUrl) {
+  // Check validation on form values
+  if (!itemName || !itemUrl) {
+    alert("Please fill in the form");
+    return false;
+  }
+
+  // Check URL site
+  let expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+  let regex = new RegExp(expression);
+
+  // If it doesn't match
+  if (!itemUrl.match(regex)) {
+    alert("Please use a valid URL");
+    return false;
+  }
+  // If it gets to the end pass true
+  return true;
+}
+
+function addhttp(url) {
+  if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
+    url = "http://" + url;
+  }
+  return url;
 }
